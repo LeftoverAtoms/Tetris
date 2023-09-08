@@ -2,7 +2,7 @@
 
 #include "Renderer.h"
 
-Renderer window("Twini-Golf", 640, 480);
+Renderer window("Tetris", 640, 480);
 
 SDL_Texture* bgTexture = window.LoadTexture("res/blue_frog.png");
 
