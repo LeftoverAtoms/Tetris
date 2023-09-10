@@ -53,11 +53,18 @@ void Game::Render()
 }
 void Game::Quit()
 {
+	for (int i = 0; i < Game::Entities.size(); i++)
+	{
+		delete(Game::Entities[i]);
+	}
+
+	Game::Entities.clear();
+
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
 
-	delete this;
+	delete(this);
 }
 
 void Game::ConfirmQuit()
@@ -85,7 +92,5 @@ void Game::ConfirmQuit()
 	if (buttonid == 0)
 	{
 		Game::IsActive = false;
-
-		SDL_Log("Program quit after %i ticks", SDL_GetTicks());
 	}
 }

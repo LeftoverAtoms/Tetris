@@ -6,11 +6,12 @@ public:
 	Entity();
 	~Entity();
 
-	void Update();
-	void Render();
+	virtual void Update();
+	virtual void Render();
 
-	void Destroy();
+	virtual void Destroy();
 
 private:
-
+	int ID;
+	static inline int IDCount;
 };

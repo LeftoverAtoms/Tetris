@@ -1,3 +1,4 @@
+#include "Block.h"
 #include "Game.h"
 #include <SDL.h>
 
@@ -7,7 +8,7 @@ int main(int argc, char* args[])
 
 	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360);
 
-	Entity* ent = new Entity();
+	new Block();
 
 	while (game->IsActive)
 	{
