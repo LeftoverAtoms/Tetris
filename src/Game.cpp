@@ -1,9 +1,15 @@
-#include <SDL.h>
-
+#include <vector>
 #include "Game.h"
 
-Game::Game() {}
-Game::~Game() {}
+Game::Game()
+{
+	IsActive = false;
+	Renderer = NULL;
+	Window = NULL;
+}
+Game::~Game()
+{
+}
 
 void Game::Init(const char* title, int x, int y, int w, int h)
 {
@@ -22,32 +28,39 @@ void Game::Events()
 	SDL_PollEvent(&event);
 	switch (event.type) {
 		case SDL_QUIT: {
-			Game::Quit();
+			Game::ConfirmQuit();
 			break;
 		}
 	}
 }
 void Game::Update()
 {
-
+	for (int i = 0; i < Game::Entities.size(); i++)
+	{
+		Game::Entities[i]->Update();
+	}
 }
 void Game::Render()
 {
 	SDL_RenderClear(Renderer);
 
-	// TODO:
-	// Render entities using a collection
+	for (int i = 0; i < Game::Entities.size(); i++)
+	{
+		Game::Entities[i]->Render();
+	}
 
 	SDL_RenderPresent(Renderer);
 }
-void Game::Clean()
+void Game::Quit()
 {
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
+
+	delete this;
 }
 
-void Game::Quit()
+void Game::ConfirmQuit()
 {
 	const SDL_MessageBoxButtonData buttons[] =
 	{
@@ -71,13 +84,8 @@ void Game::Quit()
 
 	if (buttonid == 0)
 	{
-		SDL_Log("Program quit after %i ticks", SDL_GetTicks());
-
 		Game::IsActive = false;
-	}
-}
 
-bool Game::Active()
-{
-	return Game::IsActive;
+		SDL_Log("Program quit after %i ticks", SDL_GetTicks());
+	}
 }

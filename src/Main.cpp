@@ -1,6 +1,5 @@
-#include <SDL.h>
-
 #include "Game.h"
+#include <SDL.h>
 
 int main(int argc, char* args[])
 {
@@ -8,14 +7,16 @@ int main(int argc, char* args[])
 
 	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360);
 
-	while (game->Active())
+	Entity* ent = new Entity();
+
+	while (game->IsActive)
 	{
 		game->Events();
 		game->Update();
 		game->Render();
 	}
 
-	game->Clean();
+	game->Quit();
 
 	return 0;
 }

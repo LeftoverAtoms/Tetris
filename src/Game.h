@@ -1,5 +1,8 @@
 #pragma once
-#include<SDL.h>
+
+#include "Entity.h"
+#include <SDL.h>
+#include <vector>
 
 class Game
 {
@@ -11,14 +14,14 @@ public:
 	void Events();
 	void Update();
 	void Render();
-	void Clean();
-
-	bool Active();
-
-private:
 	void Quit();
 
 	bool IsActive;
+
+	static inline std::vector<Entity*> Entities;
+
+private:
+	void ConfirmQuit();
 
 	SDL_Window* Window;
 	SDL_Renderer* Renderer;
