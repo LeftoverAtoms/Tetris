@@ -17,9 +17,3 @@ void Block::Render()
 	// Base
 	Entity::Render();
 }
-
-void Block::Destroy()
-{
-	// Base
-	Entity::Destroy();
-}
