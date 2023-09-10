@@ -1,4 +1,8 @@
+#include <iostream>
+
 #include "Game.h"
+#include <SDL_image.h>
+#include <SDL.h>
 
 Entity::Entity()
 {
@@ -6,6 +10,7 @@ Entity::Entity()
 
 	ID = IDCount++;
 	Sprite = nullptr;
+	Transform = SDL_Rect();
 }
 Entity::~Entity()
 {
@@ -19,4 +24,41 @@ Entity::~Entity()
 }
 
 void Entity::Update() {}
-void Entity::Render() {}
+void Entity::Render()
+{
+	SDL_RenderCopy(Game::Renderer, Sprite, &Transform, &Transform);
+}
+
+void Entity::SetSprite(const char* filePath)
+{
+	SDL_Texture* texture = nullptr;
+
+	texture = IMG_LoadTexture(Game::Renderer, filePath);
+	if (texture == nullptr)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
+
+	if (SDL_QueryTexture(texture, nullptr, nullptr, &Transform.w, &Transform.h) != 0)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
+
+	Sprite = texture;
+}
+
+SDL_Rect Entity::GetTransform()
+{
+	return Transform;
+}
+
+void Entity::SetPosition(int x, int y)
+{
+	Transform.x = x;
+	Transform.y = y;
+}
+void Entity::SetScale(int value)
+{
+	Transform.w = value;
+	Transform.h = value;
+}

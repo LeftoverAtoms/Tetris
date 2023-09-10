@@ -7,7 +7,7 @@ int main(int argc, char* args[])
 
 	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360);
 
-	new Block();
+	(new Entity())->SetSprite("res/blue_frog.png");
 
 	while (game->IsActive)
 	{

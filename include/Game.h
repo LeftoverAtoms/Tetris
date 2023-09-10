@@ -19,9 +19,9 @@ public:
 
 	static inline std::vector<Entity*> Entities;
 
+	static inline SDL_Window* Window;
+	static inline SDL_Renderer* Renderer;
+
 private:
 	void ConfirmQuit();
-
-	SDL_Window* Window;
-	SDL_Renderer* Renderer;
 };
