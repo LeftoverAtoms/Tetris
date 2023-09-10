@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL.h>
 
 class Entity
 {
@@ -10,6 +11,8 @@ public:
 	virtual void Render();
 
 	virtual void Destroy();
+
+	SDL_Texture* Sprite;
 
 private:
 	int ID;

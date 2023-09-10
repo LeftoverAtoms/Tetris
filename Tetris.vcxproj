@@ -25,9 +25,9 @@
     <ClCompile Include="src\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Block.h" />
-    <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="include\Block.h" />
+    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\Game.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
