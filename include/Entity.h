@@ -10,8 +10,6 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	virtual void Destroy();
-
 	SDL_Texture* Sprite;
 
 private:
