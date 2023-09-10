@@ -1,5 +1,3 @@
-#include "iostream"
-
 #include "Game.h"
 
 Entity::Entity()
@@ -7,8 +5,7 @@ Entity::Entity()
 	Game::Entities.push_back(this);
 
 	ID = IDCount++;
-
-	std::cout << ID << std::endl;
+	Sprite = nullptr;
 }
 Entity::~Entity()
 {
