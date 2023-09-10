@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 
-class Block : Entity
+class Block : public Entity
 {
 public:
 	Block();
