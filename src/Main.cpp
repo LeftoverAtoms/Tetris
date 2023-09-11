@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Block.h"
 #include "Game.h"
 
@@ -9,11 +11,23 @@ int main(int argc, char* args[])
 
 	(new Block())->SetSprite("res/blue_frog.png");
 
+	int lastTick = 0;
+	int delta = 0;
+
 	while (game->IsActive)
 	{
+		int curTick = SDL_GetTicks();
+		delta = curTick - lastTick;
+
 		game->Events();
-		game->Update();
-		game->Render();
+
+		if (delta > 16)
+		{
+			lastTick = curTick;
+
+			game->Update();
+			game->Render();
+		}
 	}
 
 	game->Quit();

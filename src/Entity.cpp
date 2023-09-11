@@ -26,7 +26,15 @@ Entity::~Entity()
 void Entity::Update() {}
 void Entity::Render()
 {
-	SDL_RenderCopy(Game::Renderer, Sprite, &Transform, &Transform);
+	SDL_Rect uv =
+	{
+		uv.x = 0,
+		uv.y = 0,
+		uv.w = Transform.w,
+		uv.h = Transform.h
+	};
+
+	SDL_RenderCopy(Game::Renderer, Sprite, &uv, &Transform);
 }
 
 void Entity::SetSprite(const char* filePath)
