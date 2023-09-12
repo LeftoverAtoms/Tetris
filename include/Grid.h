@@ -1,15 +1,13 @@
 #pragma once
+#include <Entity.h>
 #include <SDL.h>
 
-class Grid
+class Grid : public Entity
 {
 public:
 	Grid();
 	~Grid();
 
-	void SetTransform(SDL_Rect transform);
-
 private:
-	SDL_Rect Transform;
 	bool Full;
 };

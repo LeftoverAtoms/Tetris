@@ -7,7 +7,7 @@ int main(int argc, char* args[])
 {
 	Game* game = new Game();
 
-	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360);
+	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 384, 704);
 
 	(new Block())->SetTexture("res/blue_frog.png");
 

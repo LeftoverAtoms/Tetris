@@ -4,6 +4,8 @@
 class Entity
 {
 public:
+	int ID;
+
 	Entity();
 	~Entity();
 
@@ -19,8 +21,8 @@ public:
 private:
 	static inline int IDCount;
 
-	int ID;
-
 	SDL_Texture* Sprite;
+
+	SDL_Rect UV;
 	SDL_Rect Transform;
 };

@@ -4,6 +4,7 @@
 #include "Input.h"
 
 std::vector<Entity*> Game::Entities;
+Grid Game::Level[10][20] = {};
 
 SDL_Window* Game::Window = nullptr;
 SDL_Renderer* Game::Renderer = nullptr;
@@ -22,12 +23,30 @@ void Game::Init(const char* title, int x, int y, int w, int h)
 
 	Renderer = SDL_CreateRenderer(Window, -1, 0);
 
+	CreateGrid();
+
 	IsActive = true;
 }
 
 void Game::CreateGrid()
 {
+	for (int x = 0; x < 10; x++)
+	{
+		for (int y = 0; y < 20; y++)
+		{
+			int scale = 32;
 
+			int xPos = (x + 1) * scale;
+			int yPos = (y + 1) * scale;
+
+			Grid* grid = &Level[x][y];
+
+			grid->SetPosition(xPos, yPos);
+			grid->SetScale(scale);
+
+			grid->SetTexture("res/grid.png");
+		}
+	}
 }
 
 void Game::Events()

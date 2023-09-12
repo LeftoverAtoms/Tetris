@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "Game.h"
+#include <iostream>
 #include <SDL_image.h>
 #include <SDL.h>
 
@@ -10,7 +9,8 @@ Entity::Entity()
 
 	ID = IDCount++;
 	Sprite = nullptr;
-	Transform = SDL_Rect();
+	UV = {};
+	Transform = {};
 }
 Entity::~Entity()
 {
@@ -26,15 +26,7 @@ Entity::~Entity()
 void Entity::Update() {}
 void Entity::Render()
 {
-	SDL_Rect uv =
-	{
-		uv.x = 0,
-		uv.y = 0,
-		uv.w = Transform.w,
-		uv.h = Transform.h
-	};
-
-	SDL_RenderCopy(Game::Renderer, Sprite, &uv, &Transform);
+	SDL_RenderCopy(Game::Renderer, Sprite, &UV, &Transform);
 }
 
 void Entity::SetTexture(const char* filePath)
@@ -47,10 +39,13 @@ void Entity::SetTexture(const char* filePath)
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	if (SDL_QueryTexture(texture, nullptr, nullptr, &Transform.w, &Transform.h) != 0)
+	if (SDL_QueryTexture(texture, nullptr, nullptr, &UV.w, &UV.h) != 0)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
+
+	Transform.w = UV.w;
+	Transform.h = UV.h;
 
 	Sprite = texture;
 }
