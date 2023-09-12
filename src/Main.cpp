@@ -9,7 +9,7 @@ int main(int argc, char* args[])
 
 	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360);
 
-	(new Block())->SetSprite("res/blue_frog.png");
+	(new Block())->SetTexture("res/blue_frog.png");
 
 	int lastTick = 0;
 	int delta = 0;

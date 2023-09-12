@@ -1,6 +1,8 @@
 #include "Input.h"
 #include <SDL.h>
 
+SDL_KeyboardEvent Input::Key = SDL_KeyboardEvent();
+
 bool Input::Pressed(SDL_Keycode keycode)
 {
 	if (Input::Key.state == SDL_PRESSED)

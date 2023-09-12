@@ -3,11 +3,14 @@
 #include "Game.h"
 #include "Input.h"
 
+std::vector<Entity*> Game::Entities;
+
+SDL_Window* Game::Window = nullptr;
+SDL_Renderer* Game::Renderer = nullptr;
+
 Game::Game()
 {
 	IsActive = false;
-	Renderer = NULL;
-	Window = NULL;
 }
 Game::~Game() {}
 
@@ -20,6 +23,11 @@ void Game::Init(const char* title, int x, int y, int w, int h)
 	Renderer = SDL_CreateRenderer(Window, -1, 0);
 
 	IsActive = true;
+}
+
+void Game::CreateGrid()
+{
+
 }
 
 void Game::Events()

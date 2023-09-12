@@ -6,21 +6,24 @@
 class Game
 {
 public:
+	static std::vector<Entity*> Entities;
+
+	static SDL_Window* Window;
+	static SDL_Renderer* Renderer;
+
+	bool IsActive;
+
 	Game();
 	~Game();
 
 	void Init(const char* p_title, int x, int y, int w, int h);
+
+	void CreateGrid();
+
 	void Events();
 	void Update();
 	void Render();
 	void Quit();
-
-	bool IsActive;
-
-	static inline std::vector<Entity*> Entities;
-
-	static inline SDL_Window* Window;
-	static inline SDL_Renderer* Renderer;
 
 private:
 	void ConfirmQuit();

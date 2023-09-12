@@ -8,5 +8,5 @@ public:
 	static bool Pressed(SDL_Keycode keycode);
 	static bool Released(SDL_Keycode keycode);
 
-	static inline SDL_KeyboardEvent Key;
+	static SDL_KeyboardEvent Key;
 };

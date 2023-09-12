@@ -10,10 +10,9 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	void SetSprite(const char* filePath);
-
 	SDL_Rect GetTransform();
 
+	void SetTexture(const char* filePath);
 	void SetPosition(int x, int y);
 	void SetScale(int value);
 

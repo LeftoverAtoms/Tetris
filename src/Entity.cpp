@@ -37,7 +37,7 @@ void Entity::Render()
 	SDL_RenderCopy(Game::Renderer, Sprite, &uv, &Transform);
 }
 
-void Entity::SetSprite(const char* filePath)
+void Entity::SetTexture(const char* filePath)
 {
 	SDL_Texture* texture = nullptr;
 
