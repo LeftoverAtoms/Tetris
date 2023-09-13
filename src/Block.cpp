@@ -1,21 +1,15 @@
 #include "Block.h"
 
-Block::Block()
-{
-}
-Block::~Block()
-{
-}
+Block::Block() {}
+Block::~Block() {}
 
+void Block::Start() {}
 void Block::Update()
 {
-	// Base
-	Entity::Update();
+	Entity::Update(); // Copy code from base class
 
-	SetPosition(GetTransform().x, GetTransform().y + 1);
-}
-void Block::Render()
-{
-	// Base
-	Entity::Render();
+	SDL_Rect newPos = GetTransform();
+	newPos.y++;
+
+	SetPosition(newPos.x, newPos.y);
 }

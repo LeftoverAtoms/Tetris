@@ -25,6 +25,7 @@
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Block.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\Grid.h" />
     <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\Player.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

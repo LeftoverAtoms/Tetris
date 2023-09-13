@@ -1,29 +1,27 @@
 #include <iostream>
 
-#include "Block.h"
 #include "Game.h"
 
 int main(int argc, char* args[])
 {
-	Game* game = new Game();
+	Game* game = new Game("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 384, 704);
 
-	game->Init("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 384, 704);
+	game->Start();
 
-	(new Block())->SetTexture("res/blue_frog.png");
-
-	int lastTick = 0;
-	int delta = 0;
+	int frame_delta = 0;
+	int frame_target = 1000 / 60;
+	int last_tick = 0;
 
 	while (game->IsActive)
 	{
-		int curTick = SDL_GetTicks();
-		delta = curTick - lastTick;
+		int tick = SDL_GetTicks64();
+		frame_delta = tick - last_tick;
 
 		game->Events();
 
-		if (delta > 16)
+		if (frame_delta >= frame_target)
 		{
-			lastTick = curTick;
+			last_tick = tick;
 
 			game->Update();
 			game->Render();

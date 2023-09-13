@@ -6,6 +6,10 @@
 
 class Game
 {
+private:
+	void CreateGrid();
+	void ConfirmQuit();
+
 public:
 	static std::vector<Entity*> Entities;
 	static Grid Level[10][20];
@@ -15,18 +19,12 @@ public:
 
 	bool IsActive;
 
-	Game();
+	Game(const char* title, int x, int y, int w, int h);
 	~Game();
 
-	void Init(const char* p_title, int x, int y, int w, int h);
-
-	void CreateGrid();
-
+	void Start();
 	void Events();
 	void Update();
 	void Render();
 	void Quit();
-
-private:
-	void ConfirmQuit();
 };

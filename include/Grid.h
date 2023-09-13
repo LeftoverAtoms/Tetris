@@ -1,13 +1,13 @@
 #pragma once
-#include <Entity.h>
-#include <SDL.h>
+
+#include "Entity.h"
 
 class Grid : public Entity
 {
+private:
+	Entity* Entity;
+
 public:
 	Grid();
 	~Grid();
-
-private:
-	bool Full;
 };

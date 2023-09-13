@@ -1,7 +1,6 @@
 #include "Input.h"
-#include <SDL.h>
 
-SDL_KeyboardEvent Input::Key = SDL_KeyboardEvent();
+SDL_KeyboardEvent Input::Key = {};
 
 bool Input::Pressed(SDL_Keycode keycode)
 {

@@ -1,7 +1,7 @@
-#include <iostream>
-
+#include "Block.h"
 #include "Game.h"
 #include "Input.h"
+#include <iostream>
 
 std::vector<Entity*> Game::Entities;
 Grid Game::Level[10][20] = {};
@@ -9,46 +9,38 @@ Grid Game::Level[10][20] = {};
 SDL_Window* Game::Window = nullptr;
 SDL_Renderer* Game::Renderer = nullptr;
 
-Game::Game()
-{
-	IsActive = false;
-}
-Game::~Game() {}
-
-void Game::Init(const char* title, int x, int y, int w, int h)
+Game::Game(const char* title, int x, int y, int w, int h)
 {
 	SDL_InitSubSystem(SDL_INIT_EVERYTHING);
 
 	Window = SDL_CreateWindow(title, x, y, w, h, SDL_WINDOW_SHOWN);
+	if (Window == nullptr)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
 
 	Renderer = SDL_CreateRenderer(Window, -1, 0);
+	if (Renderer == nullptr)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
 
 	CreateGrid();
 
 	IsActive = true;
 }
+Game::~Game() {}
 
-void Game::CreateGrid()
+void Game::Start()
 {
-	for (int x = 0; x < 10; x++)
+	// Hack
+	(new Block())->SetTexture("res/blue_frog.png");
+
+	for (int i = 0; i < Entities.size(); i++)
 	{
-		for (int y = 0; y < 20; y++)
-		{
-			int scale = 32;
-
-			int xPos = (x + 1) * scale;
-			int yPos = (y + 1) * scale;
-
-			Grid* grid = &Level[x][y];
-
-			grid->SetPosition(xPos, yPos);
-			grid->SetScale(scale);
-
-			grid->SetTexture("res/grid.png");
-		}
+		Entities[i]->Start();
 	}
 }
-
 void Game::Events()
 {
 	SDL_Event event;
@@ -71,21 +63,21 @@ void Game::Events()
 		}
 	}
 
-	if (Input::Pressed(SDLK_w) == true)
+	if (Input::Pressed(SDLK_w))
 	{
-		std::cout << 'W' << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
-	if (Input::Pressed(SDLK_s) == true)
+	if (Input::Pressed(SDLK_s))
 	{
-		std::cout << 'S' << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
-	if (Input::Pressed(SDLK_a) == true)
+	if (Input::Pressed(SDLK_a))
 	{
-		std::cout << 'A' << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
-	if (Input::Pressed(SDLK_d) == true)
+	if (Input::Pressed(SDLK_d))
 	{
-		std::cout << 'D' << std::endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
 }
 void Game::Update()
@@ -112,7 +104,6 @@ void Game::Quit()
 	{
 		delete(Entities[i]);
 	}
-
 	Entities.clear();
 
 	SDL_DestroyWindow(Window);
@@ -122,6 +113,28 @@ void Game::Quit()
 	delete(this);
 }
 
+void Game::CreateGrid()
+{
+	const char* file_path = "res/grid.png";
+
+	for (int x = 0; x < 10; x++)
+	{
+		for (int y = 0; y < 20; y++)
+		{
+			int scale = 32;
+
+			int xPos = (x + 1) * scale;
+			int yPos = (y + 1) * scale;
+
+			Grid* grid = &Level[x][y];
+
+			grid->SetPosition(xPos, yPos);
+			grid->SetScale(scale);
+
+			grid->SetTexture(file_path);
+		}
+	}
+}
 void Game::ConfirmQuit()
 {
 	const SDL_MessageBoxButtonData buttons[] =
