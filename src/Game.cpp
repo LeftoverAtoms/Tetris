@@ -1,4 +1,3 @@
-#include "Block.h"
 #include "Game.h"
 #include "Input.h"
 #include <iostream>
@@ -6,8 +5,8 @@
 std::vector<Entity*> Game::Entities;
 Entity* Game::Grid[10][20];
 
-SDL_Window* Game::Window = nullptr;
 SDL_Renderer* Game::Renderer = nullptr;
+SDL_Window* Game::Window = nullptr;
 
 Game::Game(const char* title, int x, int y, int w, int h)
 {
@@ -25,7 +24,7 @@ Game::Game(const char* title, int x, int y, int w, int h)
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	CreateGrid();
+	CreateGrid("res/grid.png", 32);
 
 	IsActive = true;
 }
@@ -33,11 +32,6 @@ Game::~Game() {}
 
 void Game::Start()
 {
-	// Hack
-	Block* block = new Block();
-	block->SetTexture("res/blue_frog.png");
-	block->SetScale(32);
-
 	for (int i = 0; i < Entities.size(); i++)
 	{
 		Entities[i]->Start();
@@ -115,16 +109,12 @@ void Game::Quit()
 	delete(this);
 }
 
-void Game::CreateGrid()
+void Game::CreateGrid(const char* filePath, int scale)
 {
-	const char* file_path = "res/grid.png";
-
 	for (int x = 0; x < 10; x++)
 	{
 		for (int y = 0; y < 20; y++)
 		{
-			int scale = 32;
-
 			int xPos = (x + 1) * scale;
 			int yPos = (y + 1) * scale;
 
@@ -132,7 +122,7 @@ void Game::CreateGrid()
 
 			ent->SetPosition(xPos, yPos);
 			ent->SetScale(scale);
-			ent->SetTexture(file_path);
+			ent->SetTexture(filePath);
 
 			Grid[x][y] = ent;
 		}

@@ -6,15 +6,15 @@
 class Game
 {
 private:
-	void CreateGrid();
+	void CreateGrid(const char* filePath, int scale);
 	void ConfirmQuit();
 
 public:
 	static std::vector<Entity*> Entities;
 	static Entity* Grid[10][20];
 
-	static SDL_Window* Window;
 	static SDL_Renderer* Renderer;
+	static SDL_Window* Window;
 
 	bool IsActive;
 
