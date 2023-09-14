@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Entity.h"
-#include "Grid.h"
 #include <vector>
 
 class Game
@@ -12,7 +11,7 @@ private:
 
 public:
 	static std::vector<Entity*> Entities;
-	static Grid Level[10][20];
+	static Entity* Grid[10][20];
 
 	static SDL_Window* Window;
 	static SDL_Renderer* Renderer;

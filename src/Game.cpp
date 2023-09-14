@@ -4,7 +4,7 @@
 #include <iostream>
 
 std::vector<Entity*> Game::Entities;
-Grid Game::Level[10][20] = {};
+Entity* Game::Grid[10][20];
 
 SDL_Window* Game::Window = nullptr;
 SDL_Renderer* Game::Renderer = nullptr;
@@ -34,7 +34,9 @@ Game::~Game() {}
 void Game::Start()
 {
 	// Hack
-	(new Block())->SetTexture("res/blue_frog.png");
+	Block* block = new Block();
+	block->SetTexture("res/blue_frog.png");
+	block->SetScale(32);
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
@@ -65,19 +67,19 @@ void Game::Events()
 
 	if (Input::Pressed(SDLK_w))
 	{
-		std::cout << SDL_GetError() << std::endl;
+		std::cout << 'W' << std::endl;
 	}
 	if (Input::Pressed(SDLK_s))
 	{
-		std::cout << SDL_GetError() << std::endl;
+		std::cout << 'S' << std::endl;
 	}
 	if (Input::Pressed(SDLK_a))
 	{
-		std::cout << SDL_GetError() << std::endl;
+		std::cout << 'A' << std::endl;
 	}
 	if (Input::Pressed(SDLK_d))
 	{
-		std::cout << SDL_GetError() << std::endl;
+		std::cout << 'D' << std::endl;
 	}
 }
 void Game::Update()
@@ -100,10 +102,10 @@ void Game::Render()
 }
 void Game::Quit()
 {
-	for (int i = 0; i < Entities.size(); i++)
-	{
-		delete(Entities[i]);
-	}
+	//for (int i = 0; i < Entities.size(); i++)
+	//{
+		//delete(Entities[i]);
+	//}
 	Entities.clear();
 
 	SDL_DestroyWindow(Window);
@@ -126,12 +128,13 @@ void Game::CreateGrid()
 			int xPos = (x + 1) * scale;
 			int yPos = (y + 1) * scale;
 
-			Grid* grid = &Level[x][y];
+			Entity* ent = new Entity();
 
-			grid->SetPosition(xPos, yPos);
-			grid->SetScale(scale);
+			ent->SetPosition(xPos, yPos);
+			ent->SetScale(scale);
+			ent->SetTexture(file_path);
 
-			grid->SetTexture(file_path);
+			Grid[x][y] = ent;
 		}
 	}
 }
