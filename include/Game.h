@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Shape.h"
 #include <vector>
 
 class Game
@@ -15,6 +16,84 @@ public:
 
 	static SDL_Renderer* Renderer;
 	static SDL_Window* Window;
+
+	const Shape O =
+	{
+		.Data =
+		{
+			{ 1, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape I =
+	{
+		.Data =
+		{
+			{ 1, 0, 0, 0 },
+			{ 1, 0, 0, 0 },
+			{ 1, 0, 0, 0 },
+			{ 1, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape S =
+	{
+		.Data =
+		{
+			{ 0, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 1, 0, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape Z =
+	{
+		.Data =
+		{
+			{ 1, 0, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape L =
+	{
+		.Data =
+		{
+			{ 0, 1, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape J =
+	{
+		.Data =
+		{
+			{ 1, 1, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
+	const Shape T =
+	{
+		.Data =
+		{
+			{ 0, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 0, 0, 0, 0 }
+		},
+		.Tint = { 255, 255, 255, 255 }
+	};
 
 	bool IsActive;
 

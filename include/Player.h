@@ -5,7 +5,7 @@
 class Player : public Entity
 {
 private:
-	Entity* Blocks[5] = {};
+	Entity* Blocks[4][4] = {};
 
 public:
 	Player();
