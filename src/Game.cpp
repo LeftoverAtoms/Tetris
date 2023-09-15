@@ -123,7 +123,7 @@ void Game::CreateGrid(const char* filePath, int scale)
 			Entity* ent = new Entity();
 
 			ent->SetPosition(xPos, yPos);
-			ent->SetScale(scale);
+			ent->SetScale(scale, scale);
 			ent->SetTexture(filePath);
 
 			Grid[x][y] = ent;

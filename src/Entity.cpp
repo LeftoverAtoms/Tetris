@@ -3,7 +3,7 @@
 #include <SDL_image.h>
 #include <SDL.h>
 
-int Entity::IDCount = 0;
+uint8_t Entity::IDCount = 0;
 
 Entity::Entity()
 {
@@ -27,15 +27,13 @@ void Entity::Update() {}
 
 void Entity::Render()
 {
-	if (SDL_RenderCopy(Game::Renderer, Sprite, &UV, &Transform) != 0)
+	SDL_Rect uv = { 0, 0, Transform.w, Transform.h };
+	SDL_Rect in = { Transform.x, Transform.y, Transform.w, Transform.h };
+
+	if (SDL_RenderCopy(Game::Renderer, Sprite, &uv, &in) != 0)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
-}
-
-SDL_Rect Entity::GetTransform()
-{
-	return Transform;
 }
 
 void Entity::SetTexture(const char* filePath)
@@ -48,14 +46,15 @@ void Entity::SetTexture(const char* filePath)
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	if (SDL_QueryTexture(texture, nullptr, nullptr, &UV.w, &UV.h) != 0)
+	SDL_Rect out;
+
+	if (SDL_QueryTexture(texture, nullptr, nullptr, &out.w, &out.h) != 0)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	// Hack
-	Transform.w = UV.w;
-	Transform.h = UV.h;
+	Transform.w = out.w;
+	Transform.h = out.h;
 
 	Sprite = texture;
 }
@@ -64,8 +63,8 @@ void Entity::SetPosition(int x, int y)
 	Transform.x = x;
 	Transform.y = y;
 }
-void Entity::SetScale(int value)
+void Entity::SetScale(int w, int h)
 {
-	Transform.w = value;
-	Transform.h = value;
+	Transform.w = w;
+	Transform.h = h;
 }

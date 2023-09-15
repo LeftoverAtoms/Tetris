@@ -1,18 +1,18 @@
 #pragma once
 
 #include <SDL.h>
+#include "Transform.h"
 
 class Entity
 {
 private:
-	static int IDCount;
+	static uint8_t IDCount;
 
+	uint8_t ID;
 	SDL_Texture* Sprite = nullptr;
-	SDL_Rect Transform = {};
-	SDL_Rect UV = {};
 
 public:
-	int ID;
+	Transform Transform = {};
 
 	Entity();
 	~Entity();
@@ -21,9 +21,7 @@ public:
 
 	void Render();
 
-	SDL_Rect GetTransform();
-
 	void SetTexture(const char* filePath);
 	void SetPosition(int x, int y);
-	void SetScale(int value);
+	void SetScale(int w, int h);
 };
