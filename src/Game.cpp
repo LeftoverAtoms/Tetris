@@ -29,14 +29,6 @@ Game::Game(const char* title, int x, int y, int w, int h)
 	CreateGrid("res/grid.png", 32);
 
 	IsActive = true;
-
-	for (int x = 0; x < 4; x++)
-	{
-		for (int y = 0; y < 4; y++)
-		{
-			std::cout << std::format("X: {} | Y: {} | Val: {}", x, y, O.Data[x][y]) << std::endl;
-		}
-	}
 }
 Game::~Game() {}
 
