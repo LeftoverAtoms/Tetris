@@ -2,11 +2,7 @@
 #include "Input.h"
 #include <iostream>
 
-#include <format>
-#include <bitset>
-
 std::vector<Entity*> Game::Entities;
-Entity* Game::Grid[10][20];
 
 SDL_Renderer* Game::Renderer = nullptr;
 SDL_Window* Game::Window = nullptr;
@@ -27,16 +23,16 @@ Game::Game(const char* title, int x, int y, int w, int h)
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	CreateGrid("res/grid.png", 32);
-
 	IsActive = true;
-
-	ParseBlock(S);
 }
 Game::~Game() {}
 
 void Game::Start()
 {
+	Entity* background = new Entity();
+	background->SetPosition(32, 32);
+	background->SetTexture("res/grid.png");
+
 	for (int i = 0; i < Entities.size(); i++)
 	{
 		Entities[i]->Start();
@@ -90,7 +86,10 @@ void Game::Update()
 }
 void Game::Render()
 {
-	SDL_RenderClear(Renderer);
+	if (SDL_RenderClear(Renderer) != 0)
+	{
+		std::cout << SDL_GetError() << std::endl;
+	}
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
@@ -114,26 +113,6 @@ void Game::Quit()
 	delete(this);
 }
 
-// TODO: We should assign all entities at once
-void Game::CreateGrid(const char* filePath, int scale)
-{
-	for (int x = 0; x < 10; x++)
-	{
-		for (int y = 0; y < 20; y++)
-		{
-			int xPos = (x + 1) * scale;
-			int yPos = (y + 1) * scale;
-
-			Entity* ent = new Entity();
-
-			ent->SetPosition(xPos, yPos);
-			ent->SetScale(scale, scale);
-			ent->SetTexture(filePath);
-
-			Grid[x][y] = ent;
-		}
-	}
-}
 void Game::ParseBlock(Block block)
 {
 	int x = 0;
@@ -148,10 +127,10 @@ void Game::ParseBlock(Block block)
 
 		if (bit != NULL)
 		{
-			Entity* ent = Grid[x + 3][y];
+			//Entity* ent = Grid[x + 3][y];
 
-			ent->SetTexture("res/blue_frog.png");
-			ent->SetScale(32, 32);
+			//ent->SetTexture("res/blue_frog.png");
+			//ent->SetScale(32, 32);
 		}
 
 		// 
