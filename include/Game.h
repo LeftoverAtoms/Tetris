@@ -8,6 +8,7 @@ class Game
 {
 private:
 	void CreateGrid(const char* filePath, int scale);
+	void ParseBlock(Block block);
 	void ConfirmQuit();
 
 public:

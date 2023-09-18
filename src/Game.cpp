@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include <format>
+#include <bitset>
 
 std::vector<Entity*> Game::Entities;
 Entity* Game::Grid[10][20];
@@ -29,6 +30,8 @@ Game::Game(const char* title, int x, int y, int w, int h)
 	CreateGrid("res/grid.png", 32);
 
 	IsActive = true;
+
+	ParseBlock(S);
 }
 Game::~Game() {}
 
@@ -111,6 +114,7 @@ void Game::Quit()
 	delete(this);
 }
 
+// TODO: We should assign all entities at once
 void Game::CreateGrid(const char* filePath, int scale)
 {
 	for (int x = 0; x < 10; x++)
@@ -127,6 +131,38 @@ void Game::CreateGrid(const char* filePath, int scale)
 			ent->SetTexture(filePath);
 
 			Grid[x][y] = ent;
+		}
+	}
+}
+void Game::ParseBlock(Block block)
+{
+	int x = 0;
+	int y = 0;
+
+	// Read each bit from left to right
+	for (int i = 0; i < 16; i++)
+	{
+		//std::cout << (block.Shape & (32768 >> i)) << std::endl;
+
+		int bit = (32768 >> i) & block.Shape;
+
+		if (bit != NULL)
+		{
+			Entity* ent = Grid[x + 3][y];
+
+			ent->SetTexture("res/blue_frog.png");
+			ent->SetScale(32, 32);
+		}
+
+		// 
+		if (x < 3)
+		{
+			x++;
+		}
+		else
+		{
+			x = 0;
+			y++;
 		}
 	}
 }
