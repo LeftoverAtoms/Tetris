@@ -10,9 +10,10 @@ private:
 
 	uint8_t ID;
 	SDL_Texture* Sprite = nullptr;
+	SDL_Rect UV = { 0, 0, 0, 0 };
 
 public:
-	Transform Transform = {};
+	Transform Transform = { 0, 0, 0, 0 };
 
 	Entity();
 	~Entity();

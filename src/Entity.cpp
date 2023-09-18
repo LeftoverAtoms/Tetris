@@ -27,10 +27,9 @@ void Entity::Update() {}
 
 void Entity::Render()
 {
-	SDL_Rect uv = { 0, 0, Transform.w, Transform.h };
 	SDL_Rect in = { Transform.x, Transform.y, Transform.w, Transform.h };
 
-	if (SDL_RenderCopy(Game::Renderer, Sprite, &uv, &in) != 0)
+	if (SDL_RenderCopy(Game::Renderer, Sprite, &UV, &in) != 0)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
@@ -48,13 +47,10 @@ void Entity::SetTexture(const char* filePath)
 
 	SDL_Rect out;
 
-	if (SDL_QueryTexture(texture, nullptr, nullptr, &out.w, &out.h) != 0)
+	if (SDL_QueryTexture(texture, nullptr, nullptr, &UV.w, &UV.h) != 0)
 	{
 		std::cout << SDL_GetError() << std::endl;
 	}
-
-	Transform.w = out.w;
-	Transform.h = out.h;
 
 	Sprite = texture;
 }

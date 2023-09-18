@@ -30,8 +30,11 @@ Game::~Game() {}
 void Game::Start()
 {
 	Entity* background = new Entity();
-	background->SetPosition(32, 32);
 	background->SetTexture("res/grid.png");
+	background->SetPosition(32, 32);
+	background->SetScale(320, 640);
+
+	ParseBlock(I);
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
@@ -127,10 +130,11 @@ void Game::ParseBlock(Block block)
 
 		if (bit != NULL)
 		{
-			//Entity* ent = Grid[x + 3][y];
+			Entity* ent = new Entity();
 
-			//ent->SetTexture("res/blue_frog.png");
-			//ent->SetScale(32, 32);
+			ent->SetTexture("res/cat.png");
+			ent->SetPosition(32 * (4 + x), 32 * (1 + y));
+			ent->SetScale(32, 32);
 		}
 
 		// 
