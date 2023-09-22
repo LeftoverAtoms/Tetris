@@ -13,6 +13,7 @@ private:
 	SDL_Rect UV = { 0, 0, 0, 0 };
 
 public:
+	bool Active = true;
 	Transform Transform = { 0, 0, 0, 0 };
 
 	Entity();

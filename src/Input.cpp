@@ -1,4 +1,5 @@
 #include "Input.h"
+#include <iostream>
 
 SDL_KeyboardEvent Input::Key = {};
 
@@ -8,8 +9,8 @@ bool Input::Pressed(SDL_Keycode keycode)
 	{
 		if (Input::Key.keysym.sym == keycode)
 		{
-			// Reset Input
-			Key = SDL_KeyboardEvent();
+			// Breaks input system?
+			//Input::Key = SDL_KeyboardEvent();
 
 			return true;
 		}

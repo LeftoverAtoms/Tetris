@@ -7,7 +7,6 @@
 class Game
 {
 private:
-	void ParseBlock(Block block);
 	void ConfirmQuit();
 
 public:

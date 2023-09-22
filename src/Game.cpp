@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Input.h"
 #include <iostream>
+#include <Player.h>
 
 std::vector<Entity*> Game::Entities;
 
@@ -34,7 +35,8 @@ void Game::Start()
 	background->SetPosition(32, 32);
 	background->SetScale(320, 640);
 
-	ParseBlock(I);
+	Player* player = new Player();
+	player->ParseBlock(J);
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
@@ -62,23 +64,6 @@ void Game::Events()
 			break;
 		}
 	}
-
-	if (Input::Pressed(SDLK_w))
-	{
-		std::cout << 'W' << std::endl;
-	}
-	if (Input::Pressed(SDLK_s))
-	{
-		std::cout << 'S' << std::endl;
-	}
-	if (Input::Pressed(SDLK_a))
-	{
-		std::cout << 'A' << std::endl;
-	}
-	if (Input::Pressed(SDLK_d))
-	{
-		std::cout << 'D' << std::endl;
-	}
 }
 void Game::Update()
 {
@@ -96,7 +81,12 @@ void Game::Render()
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
-		Entities[i]->Render();
+		Entity* ent = Entities[i];
+
+		if (ent->Active)
+		{
+			ent->Render();
+		}
 	}
 
 	SDL_RenderPresent(Renderer);
@@ -116,39 +106,6 @@ void Game::Quit()
 	delete(this);
 }
 
-void Game::ParseBlock(Block block)
-{
-	int x = 0;
-	int y = 0;
-
-	// Read each bit from left to right
-	for (int i = 0; i < 16; i++)
-	{
-		//std::cout << (block.Shape & (32768 >> i)) << std::endl;
-
-		int bit = (32768 >> i) & block.Shape;
-
-		if (bit != NULL)
-		{
-			Entity* ent = new Entity();
-
-			ent->SetTexture("res/cat.png");
-			ent->SetPosition(32 * (4 + x), 32 * (1 + y));
-			ent->SetScale(32, 32);
-		}
-
-		// 
-		if (x < 3)
-		{
-			x++;
-		}
-		else
-		{
-			x = 0;
-			y++;
-		}
-	}
-}
 void Game::ConfirmQuit()
 {
 	const SDL_MessageBoxButtonData buttons[] =

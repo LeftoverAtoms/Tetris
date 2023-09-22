@@ -9,7 +9,7 @@ int main(int argc, char* args[])
 	game->Start();
 
 	int frame_delta = 0;
-	int frame_target = 1000 / 60;
+	int frame_target = 1000 / 15;
 	int last_tick = 0;
 
 	while (game->IsActive)
