@@ -36,7 +36,7 @@ void Game::Start()
 	background->SetScale(320, 640);
 
 	Player* player = new Player();
-	player->ParseBlock(J);
+	player->ParseBlock(J_0);
 
 	for (int i = 0; i < Entities.size(); i++)
 	{
