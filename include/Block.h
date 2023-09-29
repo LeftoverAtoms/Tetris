@@ -4,6 +4,6 @@
 
 struct Block
 {
-	uint16_t Shape;
+	unsigned short Shape;
 	SDL_Color Color;
 };

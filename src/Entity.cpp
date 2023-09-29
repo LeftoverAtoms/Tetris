@@ -3,7 +3,7 @@
 #include <SDL_image.h>
 #include <SDL.h>
 
-uint8_t Entity::IDCount = 0;
+unsigned short Entity::IDCount = 0;
 
 Entity::Entity()
 {

@@ -20,21 +20,26 @@ void Player::Update()
 	{
 		for (int x = 0; x < 4; x++)
 		{
+			Entity* ent = Blocks[x][y];
+
+			if (!ent->Active)
+				continue;
+
 			if (Input::Pressed(SDLK_a))
 			{
-				Blocks[x][y]->Transform.x -= 32;
+				ent->Transform.x -= 32;
 			}
 			if (Input::Pressed(SDLK_d))
 			{
-				Blocks[x][y]->Transform.x += 32;
+				ent->Transform.x += 32;
 			}
 			if (Input::Pressed(SDLK_w))
 			{
-				Blocks[x][y]->Transform.y -= 32;
+				ent->Transform.y -= 32;
 			}
 			if (Input::Pressed(SDLK_s))
 			{
-				Blocks[x][y]->Transform.y += 32;
+				ent->Transform.y += 32;
 			}
 		}
 	}
@@ -48,9 +53,9 @@ void Player::ParseBlock(Block block)
 	{
 		for (int x = 0; x < 4; x++)
 		{
-			int bit = (32768 >> i++) & block.Shape;
-
 			Entity* ent = Blocks[x][y];
+
+			unsigned short bit = (0b1000000000000000 >> i++) & block.Shape;
 
 			if (ent == NULL)
 			{

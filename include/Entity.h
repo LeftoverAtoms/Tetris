@@ -6,9 +6,9 @@
 class Entity
 {
 private:
-	static uint8_t IDCount;
+	static unsigned short IDCount;
 
-	uint8_t ID;
+	unsigned short ID;
 	SDL_Texture* Sprite = nullptr;
 	SDL_Rect UV = { 0, 0, 0, 0 };
 
