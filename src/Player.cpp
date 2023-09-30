@@ -25,6 +25,32 @@ void Player::Update()
 			if (!ent->Active)
 				continue;
 
+			if (Input::Pressed(SDLK_q))
+			{
+				if (Rotation == 0)
+				{
+					Rotation = 90;
+					ParseBlock(Game::J_90);
+				}
+				else if (Rotation == 90)
+				{
+					Rotation = 180;
+					ParseBlock(Game::J_180);
+				}
+				else if (Rotation == 180)
+				{
+					Rotation = 270;
+					ParseBlock(Game::J_270);
+				}
+				else if (Rotation == 270)
+				{
+					Rotation = 0;
+					ParseBlock(Game::J_0);
+				}
+			}
+
+			std::cout << Rotation << std::endl;
+
 			if (Input::Pressed(SDLK_a))
 			{
 				ent->Transform.x -= 32;
