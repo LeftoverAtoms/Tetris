@@ -33,6 +33,25 @@
     <ClInclude Include="include\Block.h" />
     <ClInclude Include="include\Transform.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\blue_frog.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="res\cat.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="res\grid.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\SDL2.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="lib\SDL2_image.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
